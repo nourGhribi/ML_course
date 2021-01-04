@@ -19,10 +19,11 @@ def stochastic_gradient_descent(y, tx, initial_w, batch_size, max_iters, gamma):
                 #compute gradient and loss and update w
                 g, err = compute_stoch_gradient(minibatch_y, minibatch_tx, w)
                 loss = calculate_mse(err)
+                
+                print("Stochastic Gradient Descent({bi}/{ti}): loss={l}, w0={w0}, w1={w1}".format(
+                  bi=n_iter, ti=max_iters - 1, l=loss, w0=w[0], w1=w[1]))
                 w = w - gamma * g
                 #append ws and losses
                 ws.append(w)
                 losses.append(loss)
-                print("Stochastic Gradient Descent({bi}/{ti}): loss={l}, w0={w0}, w1={w1}".format(
-                  bi=n_iter, ti=max_iters - 1, l=loss, w0=w[0], w1=w[1]))
     return losses, ws
